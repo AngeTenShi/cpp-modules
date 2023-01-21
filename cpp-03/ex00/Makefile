@@ -6,7 +6,7 @@ COLOR_OFF       =       \033[0m\0
 YELLOW          =       \033[0;33m
 FLAGS           =       -Wall -Wextra -Werror -std=c++98
 
-SRCS            =       main.cpp
+SRCS            =       main.cpp ClapTrap.cpp
 
 
 all:   $(SRCS) $(NAME)

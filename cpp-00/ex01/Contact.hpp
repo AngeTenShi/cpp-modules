@@ -1,7 +1,6 @@
 #ifndef CONTACT_H
 # define CONTACT_H
 
-#include <cstring>
 #include <iostream>
 
 class Contact {

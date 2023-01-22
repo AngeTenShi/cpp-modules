@@ -81,10 +81,13 @@ void Account::_displayTimestamp()
 				 << timer.tm_mon + 1 << timer.tm_mday << "_" << timer.tm_hour
 				 << timer.tm_min << timer.tm_sec << "] ";
 }
-&
+
 int main()
 {
 	Account acc(300);
 	Account acca(750);
 	Account accav(45600);
 }
+
+int test()
+

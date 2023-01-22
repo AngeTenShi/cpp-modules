@@ -1,6 +1,5 @@
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
-#include <cstring>
 
 PhoneBook::PhoneBook(void)
 {

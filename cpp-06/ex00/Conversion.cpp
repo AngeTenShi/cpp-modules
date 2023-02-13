@@ -101,7 +101,7 @@ void Conversion::print()
     }
     else if (this->is_double)
     {
-        double to_print = std::atof(this->input);
+        double to_print = std::strtod(this->input, NULL);
         if (isprint(static_cast<int>(to_print)))
             std::cout << "char : " << static_cast<char>(static_cast<int>(to_print)) << std::endl;
         else

@@ -8,6 +8,8 @@ int main(void)
 	PhoneBook phonebook;
 	std::cout << "Commande chacal : ";
 	std::cin >> input;
+	if (std::cin.eof())
+		return (0);
 	while (input.compare("EXIT"))
 	{
 		if (input.compare("ADD") == 0)
@@ -16,6 +18,8 @@ int main(void)
 			phonebook.search_contact();
 		std::cout << "Commande chacal : ";
 		std::cin >> input;
+		if (std::cin.eof())
+			exit(0);
 	}
 	return (0);
 }

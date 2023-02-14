@@ -15,10 +15,14 @@ void	ask_for_var(std::string *var, char *name, size_t len)
 {
 	std::cout << name << " : ";
 	std::cin >> *var;
+	if (std::cin.eof())
+		exit(0);
 	while ((*var).size() > len)
 	{
 		std::cout << name << " : ";
 		std::cin >> *var;
+		if (std::cin.eof())
+			exit(0);
 	}
 }
 
@@ -47,7 +51,7 @@ void	PhoneBook::add_contact()
 	if (Contact::index < 8)
 		this->_contact[Contact::index] = Contact(f_name.c_str(), l_name.c_str(), nickname.c_str(), phoneNumber.c_str() ,secret.c_str());
 	else
-		this->_contact[7] = Contact(f_name.c_str(), l_name.c_str(), nickname.c_str(), phoneNumber.c_str(), secret.c_str());
+		this->_contact[Contact::index % 8] = Contact(f_name.c_str(), l_name.c_str(), nickname.c_str(), phoneNumber.c_str(), secret.c_str());
 	Contact::index += 1;
 	std::cout << "Le contact a bien été enregistré !" << std::endl;
 }

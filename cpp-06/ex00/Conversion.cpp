@@ -91,7 +91,8 @@ void Conversion::print()
     else if (this->is_float)
     {
         float to_print = static_cast<float>(std::atof(this->input));
-        if (isprint(static_cast<int>(to_print)))
+        int printable = static_cast<int>(to_print);
+        if (printable >= 32 && printable <= 127)
             std::cout << "char : " << static_cast<char>(static_cast<int>(to_print)) << std::endl;
         else
             std::cout << "char : " << "not possible" << std::endl;
@@ -102,7 +103,8 @@ void Conversion::print()
     else if (this->is_double)
     {
         double to_print = std::strtod(this->input, NULL);
-        if (isprint(static_cast<int>(to_print)))
+        int printable = static_cast<int>(to_print);
+        if (printable >= 32 && printable <= 127)
             std::cout << "char : " << static_cast<char>(static_cast<int>(to_print)) << std::endl;
         else
             std::cout << "char : " << "not possible" << std::endl;
@@ -127,7 +129,7 @@ void Conversion::print()
     else if (this->is_int)
     {
         int to_print = static_cast<int>(std::atoi(this->input));
-        if (isprint(to_print))
+        if (to_print >= 32 && to_print <= 127)
             std::cout << "char : " << static_cast<char>(to_print) << std::endl;
         else
             std::cout << "char : " << "not possible" << std::endl;

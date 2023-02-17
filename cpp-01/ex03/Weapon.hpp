@@ -13,7 +13,6 @@ public:
 	 void	setType(std::string newType);
 
 private:
-	 std::string name;
 	 std::string type;
 };
 

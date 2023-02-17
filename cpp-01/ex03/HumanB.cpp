@@ -15,10 +15,10 @@ void HumanB::attack()
 {
 	if (this->weapon == NULL)
 		std::cout << this->name << "Doesn't have a weapon to attack" << std::endl;
-	std::cout << this->name << " attacks with their" << (*(this->weapon)).getType() << std::endl;
+	std::cout << this->name << " attacks with their" << this->weapon->getType() << std::endl;
 }
 
-void HumanB::setWeapon(Weapon weapon)
+void HumanB::setWeapon(Weapon &weapon)
 {
-	this->weapon = &weap;
+	this->weapon = &weapon;
 }

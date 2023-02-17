@@ -6,12 +6,12 @@ COLOR_OFF       =       \033[0m\0
 YELLOW          =       \033[0;33m
 FLAGS           =       -Wall -Wextra -Werror -std=c++98
 
-SRCS            =       main.cpp Zombie.cpp
+SRCS            =       main.cpp Zombie.cpp zombieHorde.cpp
 
 
-all:   $(SRCS) $(NAME)
+all: $(NAME)
 
-$(NAME):
+$(NAME): $(SRCS)
 						$(C) $(FLAGS) $(SRCS) -o $(NAME)
 
 clean:

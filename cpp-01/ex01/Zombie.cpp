@@ -19,18 +19,3 @@ void Zombie::announce()
 {
 	std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
-
-Zombie *zombieHorde(int N, std::string name)
-{
-	Zombie *horde;
-	int i = 0;
-
-	horde = new Zombie[N];
-	while (i < N)
-	{
-		horde[i].setName(name);
-		horde[i].announce();
-		i++;
-	}
-	return (horde);
-}

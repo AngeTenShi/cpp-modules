@@ -64,7 +64,7 @@ int Span::longestSpan()
 
 void 	Span::addRangeNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end)
 {
-    //if (std::distance(begin, end) > this->_N)
-    //    throw Span::TooManyValuesException();
+	if ((std::distance(begin, end) + this->vect.size()) > this->_N)
+       throw Span::TooManyValuesException();
     this->vect.assign(begin, end);
 }

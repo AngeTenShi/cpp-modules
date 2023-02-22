@@ -24,6 +24,7 @@ public:
         while (i < other.size())
         {
             this->elem[i] = other.elem[i];
+			i++;
         }
         this->_size = other.size();
     };
@@ -39,6 +40,7 @@ public:
         while (i < other.size())
         {
             this->elem[i] = other.elem[i];
+			i++;
         }
         this->_size = other.size();
         return (*this);

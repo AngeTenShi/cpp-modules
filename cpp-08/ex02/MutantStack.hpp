@@ -1,5 +1,5 @@
 #ifndef MUTANTSTACK_HPP
-#define MUTANTSTAKC_HPP
+#define MUTANTSTACK_HPP
 
 #include <stack>
 #include <iostream>

@@ -11,6 +11,13 @@ int main(void)
     std::cout << test2[4] << std::endl;
     test3[0] = 'a';
     std::cout << test3[0] << std::endl;
-    std::cout << test2[5] << std::endl;
+    try
+	{	
+		std::cout << test2[5] << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
     return (0);
 }

@@ -9,9 +9,9 @@ FLAGS           =       -Wall -Wextra -Werror -std=c++98
 SRCS            =       main.cpp Animal.cpp Dog.cpp Cat.cpp WrongCat.cpp WrongAnimal.cpp
 
 
-all:   $(SRCS) $(NAME)
+all: $(NAME)
 
-$(NAME):
+$(NAME): $(SRCS)
 						$(C) $(FLAGS) $(SRCS) -o $(NAME)
 
 clean:

@@ -26,7 +26,7 @@ public:
     public :
         virtual const char *what() const throw()
         {
-            return ("Too Many Values");
+            return ("Too Few Values");
         }
     };
     void    addNumber(unsigned int number);

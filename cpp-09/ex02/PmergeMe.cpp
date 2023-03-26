@@ -1,5 +1,23 @@
 #include "PmergeMe.hpp"
 
+void printList(std::list<int> list)
+{
+    for (std::list<int>::iterator it = list.begin(); it != list.end(); it++)
+    {
+        std::cout << *it << " ";
+    }
+    std::cout << std::endl;
+}
+
+void printVector(std::vector<int> vect)
+{
+    for (size_t i = 0; i < vect.size(); i++)
+    {
+        std::cout << vect[i] << " ";
+    }
+    std::cout << std::endl;
+}
+
 PmergeMe::PmergeMe(char **arg, int ac)
 {
     for (int i = 1; i < ac; i++)
@@ -34,7 +52,7 @@ PmergeMe::~PmergeMe()
     return ;
 }
 
-void PmergeMe::insertionVector(int idx_start, int idx_end)
+void PmergeMe:: insertionVector(int idx_start, int idx_end)
 {
     for (int i = idx_start; i <= idx_end; i++)
     {
@@ -104,19 +122,24 @@ void PmergeMe::sortVector(int idx_start, int idx_end)
 
 void PmergeMe::insertionList(int idx_start, int idx_end)
 {
+    std::list<int>::iterator stop = this->second_container.begin();
+    std::advance(stop, idx_start);
     std::list<int>::iterator it = this->second_container.begin();
-    std::advance(it, idx_start);
-    std::list<int>::iterator end = this->second_container.begin();
-    std::advance(end, idx_end);
-    for (std::list<int>::iterator it2 = it; it2 != end; ++it2)
+    std::advance(it, idx_start + 1);
+    for (int i = idx_start + 1; i <= idx_end; i++)
     {
-        std::list<int>::iterator j = it2;
-        while (j != it && *j < *(--j))
+        std::list<int>::iterator j = it;
+        std::list<int>::iterator prev_j = j;
+        --prev_j;
+        while (j != stop && *j < *prev_j)
         {
-            int temp = *j;
-            *j = *(--j);
-            *(--j) = temp;
+            int temp = *prev_j;
+            *prev_j = *j;
+            *j = temp;
+            j--;
+            prev_j--;
         }
+        ++it;
     }
 }
 
@@ -163,10 +186,13 @@ void PmergeMe::mergeList(int idx_start, int idx_end)
             begin++;
         }
     }
-    std::list<int>::iterator it = temp.begin();
-    for (int i = idx_start; i <= idx_end; i++)
+    std::list<int>::iterator it = this->second_container.begin();
+    std::list<int>::iterator temp_it = temp.begin();
+    std::advance(it, idx_start);
+    for (size_t i = 0; temp_it != temp.end() ; i++)
     {
-        this->second_container.insert(it, *it);
+        *it = *temp_it;
+        temp_it++;
         it++;
     }
 }
@@ -182,24 +208,6 @@ void PmergeMe::sortList(int idx_start, int idx_end)
     }
     else
         insertionList(idx_start, idx_end);
-}
-
-void printList(std::list<int> list)
-{
-    for (std::list<int>::iterator it = list.begin(); it != list.end(); it++)
-    {
-        std::cout << *it << " ";
-    }
-    std::cout << std::endl;
-}
-
-void printVector(std::vector<int> vect)
-{
-    for (size_t i = 0; i < vect.size(); i++)
-    {
-        std::cout << vect[i] << " ";
-    }
-    std::cout << std::endl;
 }
 
 void PmergeMe::run()
@@ -218,7 +226,6 @@ void PmergeMe::run()
     double elapsed2 = (end.tv_sec - start.tv_sec) * 1000000.0 + (end.tv_usec - start.tv_usec);
     std::cout << "After : ";
     printVector(this->first_container);
-    printList(this->second_container);
     std::cout << "Time to process a range of " << this->first_container.size() << " elements with std::vector : " << elapsed << " microsecondes" << std::endl;
     std::cout << "Time to process a range of " << this->second_container.size() << " elements with std::list : " << elapsed2 << " microsecondes" << std::endl;
 }

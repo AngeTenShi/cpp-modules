@@ -12,6 +12,6 @@ class RPN
         void calculate();
     private:
         std::string expression;
-        std::stack<char> stack;
+        std::stack<float> stack;
         float result;
 };

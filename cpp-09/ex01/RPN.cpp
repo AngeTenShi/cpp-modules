@@ -28,6 +28,16 @@ RPN::~RPN()
 
 void RPN::calculate()
 {
+    int i = 0;
+    while (expression[i + 1])
+    {
+        if (isdigit(expression[i]) && isdigit(expression[i + 1]))
+        {
+            std::cout << "Error" << std::endl;
+            return ;
+        }
+        i++;
+    }
     while (this->expression.find(' ') != std::string::npos)
         this->expression.erase(this->expression.find(' '), 1);
     std::string::iterator it = this->expression.begin();
@@ -40,7 +50,11 @@ void RPN::calculate()
             return ;
         }
         if (isdigit(*it))
-            this->stack.push(*it);
+        {
+            char c = *it;
+            this->stack.push(std::atof(&c));
+        }
+         std::stack<float> tmp = this->stack;
         if (*it == '+')
         {
             if (this->stack.size() < 2)
@@ -48,11 +62,11 @@ void RPN::calculate()
                 std::cout << "Error" << std::endl;
                 return ;
             }
-            this->result = this->stack.top() - '0';
+            this->result = this->stack.top();
             this->stack.pop();
-            this->result += this->stack.top() - '0';
+            this->result += this->stack.top();
             this->stack.pop();
-            this->stack.push(this->result + '0');
+            this->stack.push(this->result);
         }
         if (*it == '-')
         {
@@ -61,11 +75,11 @@ void RPN::calculate()
                 std::cout << "Error" << std::endl;
                 return ;
             }
-            this->result = this->stack.top() - '0';
+            this->result = this->stack.top();
             this->stack.pop();
-            this->result = this->stack.top() - '0' - this->result;
+            this->result = this->stack.top() - this->result;
             this->stack.pop();
-            this->stack.push(this->result + '0');
+            this->stack.push(this->result);
         }
         if (*it == '*')
         {
@@ -74,11 +88,11 @@ void RPN::calculate()
                 std::cout << "Error" << std::endl;
                 return ;
             }
-            this->result = this->stack.top() - '0';
+            this->result = this->stack.top();
             this->stack.pop();
-            this->result *= this->stack.top() - '0';
+            this->result *= this->stack.top();
             this->stack.pop();
-            this->stack.push(this->result + '0');
+            this->stack.push(this->result);
         }
         if (*it == '/')
         {
@@ -87,14 +101,19 @@ void RPN::calculate()
                 std::cout << "Error" << std::endl;
                 return ;
             }
-            this->result = this->stack.top() - '0';
+            this->result = this->stack.top();
             this->stack.pop();
-            this->result /= (this->stack.top() - '0');
+            this->result = this->stack.top() / this->result;
             this->stack.pop();
-            this->stack.push(this->result + '0');
+            this->stack.push(this->result);
         }
         it++;
     }
-    std::cout << this->stack.top() - '0' << std::endl;
+    if (this->stack.size() != 1)
+    {
+        std::cout << "Error" << std::endl;
+        return ;
+    }
+    std::cout << this->stack.top() << std::endl;
     return ;
 }
